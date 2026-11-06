@@ -1,0 +1,6 @@
+{
+  "name": "CampusStore E-Commerce",
+  "description": "A clean React and JavaScript e-commerce store built for Web Technology (24IC301T) featuring product filtering, cart reducer, context API, and regex form validation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.num-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
