@@ -59,28 +59,28 @@ export class BulkEstimator extends React.Component<BulkEstimatorProps, BulkEstim
     const finalEstimate = baseTotal - discountAmount;
 
     return (
-      <section className="bg-white border border-stone-200 rounded-md p-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-stone-200">
+      <section className="bg-indigo-50/70 border border-indigo-200 rounded-xl p-6 shadow-xs">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-indigo-200/80">
           <div>
-            <h2 className="text-lg font-bold text-stone-900">Class &amp; Lab Bulk Order Calculator</h2>
-            <p className="text-sm text-stone-600 mt-0.5">
+            <h2 className="text-lg font-bold text-slate-900">Class &amp; Lab Bulk Order Calculator</h2>
+            <p className="text-sm text-slate-600 mt-0.5">
               Estimate pricing for study groups or lab batches before adding items to your cart.
             </p>
           </div>
-          <span className="text-xs text-stone-500 num-text">
+          <span className="text-xs font-semibold text-indigo-700 num-text">
             5+ units: 6% off · 10+ units: 12% off
           </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-5 items-end">
           <div>
-            <label className="block text-xs font-medium text-stone-700 mb-1.5">
+            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
               Select Item
             </label>
             <select
               value={selectedId}
               onChange={this.handleProductChange}
-              className="w-full px-3 py-2 text-sm border border-stone-300 rounded bg-white text-stone-900 focus:outline-none focus:border-stone-600"
+              className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:border-indigo-600"
             >
               {products.map((p) => (
                 <option key={p.id} value={p.id}>
@@ -91,7 +91,7 @@ export class BulkEstimator extends React.Component<BulkEstimatorProps, BulkEstim
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-stone-700 mb-1.5">
+            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
               Quantity (1 to 20)
             </label>
             <input
@@ -100,7 +100,7 @@ export class BulkEstimator extends React.Component<BulkEstimatorProps, BulkEstim
               max={20}
               value={unitCount}
               onChange={this.handleCountChange}
-              className="w-full px-3 py-2 text-sm border border-stone-300 rounded bg-white text-stone-900 num-text focus:outline-none focus:border-stone-600"
+              className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg bg-white text-slate-900 num-text focus:outline-none focus:border-indigo-600"
             />
           </div>
 
@@ -110,38 +110,38 @@ export class BulkEstimator extends React.Component<BulkEstimatorProps, BulkEstim
               type="checkbox"
               checked={studentDiscount}
               onChange={this.handleCheckboxChange}
-              className="w-4 h-4 accent-stone-900 cursor-pointer"
+              className="w-4 h-4 accent-indigo-600 cursor-pointer"
             />
-            <label htmlFor="studentIdCheck" className="text-sm text-stone-700 cursor-pointer">
+            <label htmlFor="studentIdCheck" className="text-sm font-medium text-slate-700 cursor-pointer">
               Apply College ID Rebate (5%)
             </label>
           </div>
         </div>
 
-        <div className="mt-5 pt-4 border-t border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="mt-5 pt-4 border-t border-indigo-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-6 text-sm">
             <div>
-              <span className="text-stone-500">Regular Price: </span>
-              <span className="font-medium text-stone-800 num-text">Rs. {baseTotal.toLocaleString('en-IN')}</span>
+              <span className="text-slate-600">Regular Price: </span>
+              <span className="font-semibold text-slate-800 num-text">Rs. {baseTotal.toLocaleString('en-IN')}</span>
             </div>
             <div>
-              <span className="text-stone-500">Estimated Savings: </span>
-              <span className="font-medium text-emerald-700 num-text">-Rs. {discountAmount.toLocaleString('en-IN')}</span>
+              <span className="text-slate-600">Estimated Savings: </span>
+              <span className="font-bold text-emerald-700 num-text">-Rs. {discountAmount.toLocaleString('en-IN')}</span>
             </div>
             <div>
-              <span className="text-stone-500">Net Estimate: </span>
-              <span className="font-bold text-stone-900 num-text">Rs. {finalEstimate.toLocaleString('en-IN')}</span>
+              <span className="text-slate-600">Net Estimate: </span>
+              <span className="font-bold text-indigo-700 text-base num-text">Rs. {finalEstimate.toLocaleString('en-IN')}</span>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
             {addedMessage && (
-              <span className="text-xs text-emerald-700 font-medium">{addedMessage}</span>
+              <span className="text-xs text-emerald-700 font-semibold">{addedMessage}</span>
             )}
             <button
               type="button"
               onClick={this.handleAddAll}
-              className="px-4 py-2 text-xs font-medium bg-stone-900 text-white rounded hover:bg-stone-800 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+              className="px-4 py-2 text-xs font-semibold bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors whitespace-nowrap shrink-0 cursor-pointer shadow-xs"
             >
               Add {unitCount} to Cart
             </button>

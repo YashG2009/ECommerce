@@ -23,7 +23,7 @@ export const productList: Product[] = [
     description: "7th Edition by David Flanagan. Covers ES6+, classes, modules, iterators, generators, and web platform APIs.",
     brand: "O'Reilly Media",
     code: "BK-101",
-    color: "#f5ebe0",
+    color: "#FEF3C7",
     iconType: "book-js"
   },
   {
@@ -36,7 +36,7 @@ export const productList: Product[] = [
     description: "By David Griffiths and Dawn Griffiths. Practical recipes for building modern single-page web applications.",
     brand: "O'Reilly Media",
     code: "BK-102",
-    color: "#e8f1f5",
+    color: "#E0F2FE",
     iconType: "book-react"
   },
   {
@@ -49,7 +49,7 @@ export const productList: Product[] = [
     description: "HTML5 & CSS textbook by Terry Felke-Morris covering web standards, page layout, forms, and site planning.",
     brand: "Pearson Education",
     code: "BK-103",
-    color: "#eef2e6",
+    color: "#FCE7F3",
     iconType: "book-html"
   },
   {
@@ -62,7 +62,7 @@ export const productList: Product[] = [
     description: "Non-programmable scientific calculator with high-resolution textbook display and 540+ functions for exams.",
     brand: "Casio",
     code: "EL-201",
-    color: "#e9ecef",
+    color: "#EDE9FE",
     iconType: "calc"
   },
   {
@@ -75,7 +75,7 @@ export const productList: Product[] = [
     description: "Silent click compact wireless mouse with 2.4 GHz USB receiver and 18-month battery life for lab sessions.",
     brand: "Logitech",
     code: "EL-202",
-    color: "#e5e7eb",
+    color: "#DBEAFE",
     iconType: "mouse"
   },
   {
@@ -88,7 +88,7 @@ export const productList: Product[] = [
     description: "Metal casing flash drive with fast transfer speeds up to 150 MB/s for project backups and lab submissions.",
     brand: "SanDisk",
     code: "EL-203",
-    color: "#f3e8ee",
+    color: "#FFE4E6",
     iconType: "usb"
   },
   {
@@ -101,7 +101,7 @@ export const productList: Product[] = [
     description: "300-page unruled and single-line spiral notebooks with sturdy polypropylene covers for lecture notes.",
     brand: "Classmate",
     code: "ST-301",
-    color: "#fef3c7",
+    color: "#FFEDD5",
     iconType: "notebook"
   },
   {
@@ -114,7 +114,7 @@ export const productList: Product[] = [
     description: "Pack of 3 fine needle-point rollerball pens with visible ink level and smooth consistent flow.",
     brand: "Pilot",
     code: "ST-302",
-    color: "#e0f2fe",
+    color: "#D1FAE5",
     iconType: "pen"
   },
   {
@@ -127,7 +127,7 @@ export const productList: Product[] = [
     description: "Water-resistant cotton canvas backpack with padded laptop compartment, bottle pocket, and organizer.",
     brand: "DailyGear",
     code: "AC-401",
-    color: "#e7e5e4",
+    color: "#E0E7FF",
     iconType: "bag"
   },
   {
@@ -140,7 +140,7 @@ export const productList: Product[] = [
     description: "Double-wall vacuum insulated water bottle that keeps drinks cold for 18 hours or hot for 12 hours.",
     brand: "Milton",
     code: "AC-402",
-    color: "#dcfce7",
+    color: "#CCFBF1",
     iconType: "bottle"
   },
   {
@@ -153,7 +153,7 @@ export const productList: Product[] = [
     description: "Foldable 6-level ergonomic desk stand compatible with 13 to 16 inch laptops with silicone anti-slip pads.",
     brand: "Portronics",
     code: "AC-403",
-    color: "#f1f5f9",
+    color: "#F3E8FF",
     iconType: "stand"
   },
   {
@@ -166,7 +166,7 @@ export const productList: Product[] = [
     description: "Powder-coated wire mesh desk caddy with 4 compartments for pens, sticky notes, clips, and rulers.",
     brand: "Solo",
     code: "ST-303",
-    color: "#f5f5f4",
+    color: "#FEF9C3",
     iconType: "organizer"
   }
 ];

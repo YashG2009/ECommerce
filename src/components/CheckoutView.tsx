@@ -117,15 +117,15 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
 
   if (cart.length === 0) {
     return (
-      <div className="bg-white border border-stone-200 rounded-md p-8 text-center max-w-xl mx-auto my-8">
-        <h2 className="text-xl font-bold text-stone-900">Your Shopping Cart is Empty</h2>
-        <p className="text-sm text-stone-600 mt-2">
+      <div className="bg-white border border-slate-200 rounded-xl p-8 text-center max-w-xl mx-auto my-8 shadow-xs">
+        <h2 className="text-xl font-bold text-slate-900">Your Shopping Cart is Empty</h2>
+        <p className="text-sm text-slate-600 mt-2">
           Add textbooks, stationery, or electronics from the catalog before proceeding to checkout.
         </p>
         <button
           type="button"
           onClick={onBackToShop}
-          className="mt-5 px-4 py-2 text-sm font-medium bg-stone-900 text-white rounded hover:bg-stone-800 cursor-pointer"
+          className="mt-5 px-5 py-2.5 text-sm font-semibold bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 cursor-pointer"
         >
           Return to Catalog
         </button>
@@ -136,58 +136,58 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
       <div className="lg:col-span-7 space-y-6">
-        <div className="bg-white border border-stone-200 rounded-md p-6">
-          <div className="flex items-center justify-between pb-4 border-b border-stone-200">
-            <h2 className="text-lg font-bold text-stone-900">1. Review Cart Items ({cart.length})</h2>
+        <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-xs">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-200">
+            <h2 className="text-lg font-bold text-slate-900">1. Review Cart Items ({cart.length})</h2>
             <button
               type="button"
               onClick={onBackToShop}
-              className="text-xs font-medium text-stone-600 hover:text-stone-900 underline cursor-pointer"
+              className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 underline cursor-pointer"
             >
               Continue Shopping
             </button>
           </div>
 
-          <div className="divide-y divide-stone-200 mt-2">
+          <div className="divide-y divide-slate-200 mt-2">
             {cart.map(({ product, quantity }) => (
               <div key={product.id} className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <div className="text-xs text-stone-500">{product.code} · {product.brand}</div>
-                  <div className="text-sm font-semibold text-stone-900">{product.name}</div>
-                  <div className="text-xs text-stone-600 num-text mt-0.5">
+                  <div className="text-xs font-medium text-indigo-600">{product.code} · {product.brand}</div>
+                  <div className="text-sm font-bold text-slate-900">{product.name}</div>
+                  <div className="text-xs text-slate-500 num-text mt-0.5">
                     Rs. {product.price.toLocaleString('en-IN')} each
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center border border-stone-300 rounded">
+                  <div className="flex items-center border border-slate-300 rounded-lg overflow-hidden">
                     <button
                       type="button"
                       onClick={() => updateQuantity(product.id, quantity - 1)}
-                      className="px-2.5 py-1 text-sm text-stone-700 hover:bg-stone-100 cursor-pointer"
+                      className="px-2.5 py-1 text-sm text-slate-700 hover:bg-slate-100 cursor-pointer"
                     >
                       -
                     </button>
-                    <span className="px-3 py-1 text-xs font-medium num-text">
+                    <span className="px-3 py-1 text-xs font-bold num-text bg-slate-50">
                       {quantity}
                     </span>
                     <button
                       type="button"
                       onClick={() => updateQuantity(product.id, quantity + 1)}
-                      className="px-2.5 py-1 text-sm text-stone-700 hover:bg-stone-100 cursor-pointer"
+                      className="px-2.5 py-1 text-sm text-slate-700 hover:bg-slate-100 cursor-pointer"
                     >
                       +
                     </button>
                   </div>
 
-                  <div className="w-24 text-right text-sm font-semibold text-stone-900 num-text">
+                  <div className="w-24 text-right text-sm font-bold text-slate-900 num-text">
                     Rs. {(product.price * quantity).toLocaleString('en-IN')}
                   </div>
 
                   <button
                     type="button"
                     onClick={() => removeFromCart(product.id)}
-                    className="text-xs text-red-700 hover:underline ml-1 cursor-pointer"
+                    className="text-xs font-medium text-rose-600 hover:underline ml-1 cursor-pointer"
                   >
                     Remove
                   </button>
@@ -197,14 +197,14 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} noValidate className="bg-white border border-stone-200 rounded-md p-6">
-          <h2 className="text-lg font-bold text-stone-900 pb-4 border-b border-stone-200">
+        <form onSubmit={handleSubmit} noValidate className="bg-white border border-slate-200 rounded-xl p-6 shadow-xs">
+          <h2 className="text-lg font-bold text-slate-900 pb-4 border-b border-slate-200">
             2. Delivery &amp; Customer Verification
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
             <div className="sm:col-span-2">
-              <label className="block text-xs font-medium text-stone-700 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
                 Full Name *
               </label>
               <input
@@ -212,15 +212,15 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
                 placeholder="e.g. Yash Ganatra"
-                className="w-full px-3 py-2 text-sm border border-stone-300 rounded focus:outline-none focus:border-stone-700"
+                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:border-indigo-600"
               />
               {errors.customerName && (
-                <p className="text-xs text-red-700 mt-1">{errors.customerName}</p>
+                <p className="text-xs text-rose-600 mt-1">{errors.customerName}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-stone-700 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
                 Email Address *
               </label>
               <input
@@ -228,15 +228,15 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="student@college.edu"
-                className="w-full px-3 py-2 text-sm border border-stone-300 rounded focus:outline-none focus:border-stone-700"
+                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:border-indigo-600"
               />
               {errors.email && (
-                <p className="text-xs text-red-700 mt-1">{errors.email}</p>
+                <p className="text-xs text-rose-600 mt-1">{errors.email}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-stone-700 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
                 10-Digit Mobile Number *
               </label>
               <input
@@ -244,15 +244,15 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="9876543210"
-                className="w-full px-3 py-2 text-sm border border-stone-300 rounded num-text focus:outline-none focus:border-stone-700"
+                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg num-text focus:outline-none focus:border-indigo-600"
               />
               {errors.phone && (
-                <p className="text-xs text-red-700 mt-1">{errors.phone}</p>
+                <p className="text-xs text-rose-600 mt-1">{errors.phone}</p>
               )}
             </div>
 
             <div className="sm:col-span-2">
-              <label className="block text-xs font-medium text-stone-700 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
                 Delivery Address (Hostel / Flat / Street) *
               </label>
               <textarea
@@ -260,15 +260,15 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder="Room 204, Block B Hostel, Main University Road"
-                className="w-full px-3 py-2 text-sm border border-stone-300 rounded focus:outline-none focus:border-stone-700"
+                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:border-indigo-600"
               />
               {errors.address && (
-                <p className="text-xs text-red-700 mt-1">{errors.address}</p>
+                <p className="text-xs text-rose-600 mt-1">{errors.address}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-stone-700 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
                 Postal Pincode (6 Digits) *
               </label>
               <input
@@ -276,21 +276,21 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
                 value={pincode}
                 onChange={(e) => setPincode(e.target.value)}
                 placeholder="380015"
-                className="w-full px-3 py-2 text-sm border border-stone-300 rounded num-text focus:outline-none focus:border-stone-700"
+                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg num-text focus:outline-none focus:border-indigo-600"
               />
               {errors.pincode && (
-                <p className="text-xs text-red-700 mt-1">{errors.pincode}</p>
+                <p className="text-xs text-rose-600 mt-1">{errors.pincode}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-stone-700 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
                 Payment Mode
               </label>
               <select
                 value={paymentMethod}
                 onChange={(e) => setPaymentMethod(e.target.value)}
-                className="w-full px-3 py-2 text-sm border border-stone-300 rounded bg-white focus:outline-none focus:border-stone-700"
+                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg bg-white focus:outline-none focus:border-indigo-600"
               >
                 <option value="COD">Cash on Delivery (COD)</option>
                 <option value="UPI">UPI at Delivery</option>
@@ -299,17 +299,17 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-stone-200 flex items-center justify-end gap-3">
+          <div className="mt-6 pt-4 border-t border-slate-200 flex items-center justify-end gap-3">
             <button
               type="button"
               onClick={onBackToShop}
-              className="px-4 py-2 text-xs font-medium border border-stone-300 rounded text-stone-700 hover:bg-stone-100 cursor-pointer"
+              className="px-4 py-2 text-xs font-semibold border border-slate-300 rounded-lg text-slate-700 hover:bg-slate-100 cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-5 py-2 text-xs font-medium bg-stone-900 text-white rounded hover:bg-stone-800 cursor-pointer"
+              className="px-5 py-2.5 text-xs font-semibold bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 cursor-pointer shadow-xs"
             >
               Place Order (Rs. {finalTotal.toLocaleString('en-IN')})
             </button>
@@ -318,13 +318,13 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
       </div>
 
       <div className="lg:col-span-5 space-y-6">
-        <div className="bg-white border border-stone-200 rounded-md p-6">
-          <h3 className="text-base font-bold text-stone-900 pb-3 border-b border-stone-200">
+        <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-xs">
+          <h3 className="text-base font-bold text-slate-900 pb-3 border-b border-slate-200">
             Order Bill Summary
           </h3>
 
           <div className="mt-4">
-            <label className="block text-xs font-medium text-stone-700 mb-1">
+            <label className="block text-xs font-semibold text-slate-700 mb-1">
               Promo Code (Try STUDENT10 or WEBTECH20)
             </label>
             <div className="flex gap-2">
@@ -333,44 +333,44 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
                 value={couponInput}
                 onChange={(e) => setCouponInput(e.target.value)}
                 placeholder="Enter code"
-                className="flex-1 px-3 py-1.5 text-sm border border-stone-300 rounded uppercase num-text focus:outline-none focus:border-stone-700"
+                className="flex-1 px-3 py-1.5 text-sm border border-slate-300 rounded-lg uppercase num-text focus:outline-none focus:border-indigo-600"
               />
               <button
                 type="button"
                 onClick={handleApplyCoupon}
-                className="px-3 py-1.5 text-xs font-medium bg-stone-800 text-white rounded hover:bg-stone-700 whitespace-nowrap shrink-0 cursor-pointer"
+                className="px-4 py-1.5 text-xs font-semibold bg-amber-500 text-slate-950 rounded-lg hover:bg-amber-400 whitespace-nowrap shrink-0 cursor-pointer"
               >
                 Apply
               </button>
             </div>
             {errors.coupon && (
-              <p className="text-xs text-red-700 mt-1">{errors.coupon}</p>
+              <p className="text-xs text-rose-600 mt-1">{errors.coupon}</p>
             )}
             {appliedCoupon && (
-              <p className="text-xs text-emerald-700 mt-1">
+              <p className="text-xs font-medium text-emerald-700 mt-1">
                 Code {appliedCoupon} applied ({discountRate * 100}% discount).
               </p>
             )}
           </div>
 
-          <div className="mt-5 space-y-2.5 text-sm border-t border-stone-200 pt-4">
-            <div className="flex justify-between text-stone-600">
+          <div className="mt-5 space-y-2.5 text-sm border-t border-slate-200 pt-4">
+            <div className="flex justify-between text-slate-600">
               <span>Items Subtotal</span>
-              <span className="num-text">Rs. {cartSubtotal.toLocaleString('en-IN')}</span>
+              <span className="num-text font-medium">Rs. {cartSubtotal.toLocaleString('en-IN')}</span>
             </div>
-            <div className="flex justify-between text-stone-600">
+            <div className="flex justify-between text-slate-600">
               <span>Coupon Discount</span>
-              <span className="num-text text-emerald-700">
+              <span className="num-text font-medium text-emerald-700">
                 -Rs. {discountAmount.toLocaleString('en-IN')}
               </span>
             </div>
-            <div className="flex justify-between text-stone-600">
+            <div className="flex justify-between text-slate-600">
               <span>Delivery Charges (Free over Rs. 999)</span>
-              <span className="num-text">
+              <span className="num-text font-medium text-emerald-700">
                 {deliveryCharge === 0 ? 'FREE' : `Rs. ${deliveryCharge}`}
               </span>
             </div>
-            <div className="flex justify-between text-base font-bold text-stone-900 border-t border-stone-200 pt-3">
+            <div className="flex justify-between text-base font-bold text-indigo-950 border-t border-slate-200 pt-3">
               <span>Total Payable</span>
               <span className="num-text">Rs. {finalTotal.toLocaleString('en-IN')}</span>
             </div>
