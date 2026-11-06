@@ -1,12 +1,6 @@
 import React from 'react';
 
-interface ProductVisualProps {
-  iconType: string;
-  color: string;
-  code: string;
-}
-
-export function ProductVisual({ iconType, color, code }: ProductVisualProps) {
+export function ProductVisual({ iconType, color, code }) {
   return (
     <div
       style={{ backgroundColor: color }}

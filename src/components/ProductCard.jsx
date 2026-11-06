@@ -1,15 +1,5 @@
 import React from 'react';
-import { Product } from '../data/products';
-import { ProductVisual } from './ProductVisual';
-
-interface ProductCardProps {
-  item: Product;
-  inCartQty: number;
-  isSaved: boolean;
-  onAdd: (product: Product) => void;
-  onToggleSave: (id: number) => void;
-  onSelectProduct: (product: Product) => void;
-}
+import { ProductVisual } from './ProductVisual.jsx';
 
 export function ProductCard({
   item,
@@ -18,7 +8,7 @@ export function ProductCard({
   onAdd,
   onToggleSave,
   onSelectProduct
-}: ProductCardProps) {
+}) {
   const { id, name, category, price, rating, stock, brand, code, color, iconType } = item;
 
   return (

@@ -1,20 +1,7 @@
 import React from 'react';
-import { Product } from '../data/products';
 
-interface BulkEstimatorProps {
-  products: Product[];
-  onAddBulkToCart: (product: Product, count: number) => void;
-}
-
-interface BulkEstimatorState {
-  selectedId: number;
-  unitCount: number;
-  studentDiscount: boolean;
-  addedMessage: string;
-}
-
-export class BulkEstimator extends React.Component<BulkEstimatorProps, BulkEstimatorState> {
-  constructor(props: BulkEstimatorProps) {
+export class BulkEstimator extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       selectedId: props.products[0]?.id || 1,
@@ -24,16 +11,16 @@ export class BulkEstimator extends React.Component<BulkEstimatorProps, BulkEstim
     };
   }
 
-  handleProductChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  handleProductChange = (e) => {
     this.setState({ selectedId: Number(e.target.value), addedMessage: '' });
   };
 
-  handleCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  handleCountChange = (e) => {
     const val = Math.max(1, Math.min(20, Number(e.target.value) || 1));
     this.setState({ unitCount: val, addedMessage: '' });
   };
 
-  handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  handleCheckboxChange = (e) => {
     this.setState({ studentDiscount: e.target.checked, addedMessage: '' });
   };
 

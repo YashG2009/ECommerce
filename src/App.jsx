@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from 'react';
-import { productList, Product } from './data/products';
-import { ShopProvider, useShop, OrderRecord } from './context/ShopContext';
-import { ProductCard } from './components/ProductCard';
-import { ProductVisual } from './components/ProductVisual';
-import { BulkEstimator } from './components/BulkEstimator';
-import { CheckoutView } from './components/CheckoutView';
+import { productList } from './data/products.js';
+import { ShopProvider, useShop } from './context/ShopContext.jsx';
+import { ProductCard } from './components/ProductCard.jsx';
+import { ProductVisual } from './components/ProductVisual.jsx';
+import { BulkEstimator } from './components/BulkEstimator.jsx';
+import { CheckoutView } from './components/CheckoutView.jsx';
 
 function MainStore() {
   const {
@@ -18,18 +18,18 @@ function MainStore() {
     cartSubtotal
   } = useShop();
 
-  const [activePage, setActivePage] = useState<'shop' | 'saved' | 'bulk' | 'orders' | 'checkout'>('shop');
+  const [activePage, setActivePage] = useState('shop');
   const [searchText, setSearchText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState('default');
   const [maxPrice, setMaxPrice] = useState(1500);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [latestOrder, setLatestOrder] = useState<OrderRecord | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [latestOrder, setLatestOrder] = useState(null);
 
   const categories = ['All', 'Books', 'Electronics', 'Stationery', 'Accessories'];
 
   const handleBulkAdd = useCallback(
-    (product: Product, count: number) => {
+    (product, count) => {
       const existing = cart.find((c) => c.product.id === product.id);
       if (existing) {
         updateQuantity(product.id, existing.quantity + count);
@@ -65,7 +65,7 @@ function MainStore() {
 
   const savedProducts = productList.filter((item) => savedIds.includes(item.id));
 
-  const getCartQty = (id: number) => {
+  const getCartQty = (id) => {
     const found = cart.find((c) => c.product.id === id);
     return found ? found.quantity : 0;
   };
@@ -231,30 +231,30 @@ function MainStore() {
 
         {activePage === 'shop' && (
           <div className="space-y-8">
-            <section className="bg-indigo-50/80 border border-indigo-100 rounded-2xl p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <section className="bg-sky-200 border border-sky-300 rounded-none p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
               <div className="lg:col-span-8">
-                <div className="text-xs font-semibold text-indigo-600">
+                <div className="text-xs font-semibold text-sky-900">
                   University Books, Lab Electronics &amp; Daily Stationery
                 </div>
                 <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mt-1 tracking-tight">
                   Essential Course Books &amp; Lab Supplies at Student Prices
                 </h1>
-                <p className="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
-                  Browse prescribed reference textbooks, scientific calculators, notebooks, and accessories. Free campus delivery on orders above Rs. 999 or use code <span className="font-mono font-bold text-indigo-700 bg-white px-1.5 py-0.5 rounded border border-indigo-200">STUDENT10</span> at checkout.
+                <p className="text-sm text-slate-800 mt-2 max-w-2xl leading-relaxed">
+                  Browse prescribed reference textbooks, scientific calculators, notebooks, and accessories. Free campus delivery on orders above Rs. 999 or use code <span className="font-mono font-bold text-sky-950 bg-white px-1.5 py-0.5 border border-sky-400">STUDENT10</span> at checkout.
                 </p>
               </div>
               <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-2.5 justify-end">
                 <button
                   type="button"
                   onClick={() => setSelectedCategory('Books')}
-                  className="px-4 py-2.5 text-xs font-semibold bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-center cursor-pointer shadow-2xs"
+                  className="px-4 py-2.5 text-xs font-semibold bg-sky-800 text-white rounded-none hover:bg-sky-900 text-center cursor-pointer"
                 >
                   Browse Reference Books
                 </button>
                 <button
                   type="button"
                   onClick={() => setActivePage('bulk')}
-                  className="px-4 py-2.5 text-xs font-semibold bg-white border border-indigo-200 text-indigo-700 rounded-lg hover:bg-indigo-100/50 text-center cursor-pointer"
+                  className="px-4 py-2.5 text-xs font-semibold bg-white border border-sky-400 text-sky-950 rounded-none hover:bg-sky-50 text-center cursor-pointer"
                 >
                   Open Bulk Order Calculator
                 </button>

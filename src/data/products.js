@@ -1,18 +1,4 @@
-export interface Product {
-  id: number;
-  name: string;
-  category: string;
-  price: number;
-  rating: number;
-  stock: number;
-  description: string;
-  brand: string;
-  code: string;
-  color: string;
-  iconType: string;
-}
-
-export const productList: Product[] = [
+export const productList = [
   {
     id: 1,
     name: "JavaScript: The Definitive Guide",

@@ -1,21 +1,7 @@
 import React, { useState } from 'react';
-import { useShop, OrderRecord } from '../context/ShopContext';
+import { useShop } from '../context/ShopContext.jsx';
 
-interface CheckoutViewProps {
-  onBackToShop: () => void;
-  onOrderSuccess: (order: OrderRecord) => void;
-}
-
-interface FormErrors {
-  customerName?: string;
-  email?: string;
-  phone?: string;
-  address?: string;
-  pincode?: string;
-  coupon?: string;
-}
-
-export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps) {
+export function CheckoutView({ onBackToShop, onOrderSuccess }) {
   const { cart, cartSubtotal, updateQuantity, removeFromCart, placeOrder } = useShop();
 
   const [customerName, setCustomerName] = useState('');
@@ -27,7 +13,7 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
   const [couponInput, setCouponInput] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState('');
   const [discountRate, setDiscountRate] = useState(0);
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [errors, setErrors] = useState({});
 
   const nameRegex = /^[A-Za-z\s.]{3,50}$/;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -61,7 +47,7 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
   const finalTotal = Math.max(0, cartSubtotal - discountAmount + deliveryCharge);
 
   const validateForm = () => {
-    const newErrors: FormErrors = {};
+    const newErrors = {};
 
     if (!nameRegex.test(customerName.trim())) {
       newErrors.customerName = 'Enter a valid full name (letters only, min 3 characters).';
@@ -83,7 +69,7 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (cart.length === 0) return;
 
@@ -91,7 +77,7 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
       return;
     }
 
-    const orderRecord: OrderRecord = {
+    const orderRecord = {
       orderId: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
       customerName: customerName.trim(),
       email: email.trim(),

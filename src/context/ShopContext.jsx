@@ -1,35 +1,6 @@
 import React, { createContext, useContext, useReducer, useEffect, useState, useCallback } from 'react';
-import { Product } from '../data/products';
 
-export interface CartItem {
-  product: Product;
-  quantity: number;
-}
-
-export interface OrderRecord {
-  orderId: string;
-  customerName: string;
-  email: string;
-  phone: string;
-  address: string;
-  pincode: string;
-  paymentMethod: string;
-  items: CartItem[];
-  subtotal: number;
-  discount: number;
-  deliveryCharge: number;
-  totalAmount: number;
-  date: string;
-}
-
-type CartAction =
-  | { type: 'ADD_ITEM'; payload: Product }
-  | { type: 'REMOVE_ITEM'; payload: number }
-  | { type: 'UPDATE_QTY'; payload: { id: number; qty: number } }
-  | { type: 'CLEAR_CART' }
-  | { type: 'LOAD_CART'; payload: CartItem[] };
-
-function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
+function cartReducer(state, action) {
   switch (action.type) {
     case 'ADD_ITEM': {
       const existing = state.find((item) => item.product.id === action.payload.id);
@@ -66,23 +37,9 @@ function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
   }
 }
 
-interface ShopContextType {
-  cart: CartItem[];
-  savedIds: number[];
-  orders: OrderRecord[];
-  addToCart: (product: Product) => void;
-  removeFromCart: (id: number) => void;
-  updateQuantity: (id: number, qty: number) => void;
-  clearCart: () => void;
-  toggleSaved: (id: number) => void;
-  placeOrder: (order: OrderRecord) => void;
-  cartCount: number;
-  cartSubtotal: number;
-}
+const ShopContext = createContext(undefined);
 
-const ShopContext = createContext<ShopContextType | undefined>(undefined);
-
-export function ShopProvider({ children }: { children: React.ReactNode }) {
+export function ShopProvider({ children }) {
   const [cart, dispatch] = useReducer(cartReducer, [], () => {
     try {
       const saved = localStorage.getItem('campus_store_cart');
@@ -92,7 +49,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     }
   });
 
-  const [savedIds, setSavedIds] = useState<number[]>(() => {
+  const [savedIds, setSavedIds] = useState(() => {
     try {
       const saved = localStorage.getItem('campus_store_saved');
       return saved ? JSON.parse(saved) : [1, 4];
@@ -101,7 +58,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     }
   });
 
-  const [orders, setOrders] = useState<OrderRecord[]>(() => {
+  const [orders, setOrders] = useState(() => {
     try {
       const saved = localStorage.getItem('campus_store_orders');
       return saved ? JSON.parse(saved) : [];
@@ -134,15 +91,15 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     }
   }, [orders]);
 
-  const addToCart = useCallback((product: Product) => {
+  const addToCart = useCallback((product) => {
     dispatch({ type: 'ADD_ITEM', payload: product });
   }, []);
 
-  const removeFromCart = useCallback((id: number) => {
+  const removeFromCart = useCallback((id) => {
     dispatch({ type: 'REMOVE_ITEM', payload: id });
   }, []);
 
-  const updateQuantity = useCallback((id: number, qty: number) => {
+  const updateQuantity = useCallback((id, qty) => {
     dispatch({ type: 'UPDATE_QTY', payload: { id, qty } });
   }, []);
 
@@ -150,13 +107,13 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'CLEAR_CART' });
   }, []);
 
-  const toggleSaved = useCallback((id: number) => {
+  const toggleSaved = useCallback((id) => {
     setSavedIds((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
   }, []);
 
-  const placeOrder = useCallback((newOrder: OrderRecord) => {
+  const placeOrder = useCallback((newOrder) => {
     setOrders((prev) => [newOrder, ...prev]);
     dispatch({ type: 'CLEAR_CART' });
   }, []);
