@@ -513,8 +513,10 @@ function MainStore() {
       </main>
 
       <footer className="bg-white border-t border-slate-200 mt-12">
-        <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div>CampusStore — Academic Books, Electronics &amp; Stationery Portal</div>
+        <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+          <div>
+            CampusStore — Made by <span className="font-semibold text-slate-900">Yash Hitesh Ganatra 24BIT148</span>
+          </div>
           <div className="flex items-center gap-4">
             <button
               type="button"
